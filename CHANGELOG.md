@@ -2,6 +2,22 @@
 
 #### ⚠️ Pushed to `main`
 
+- Bump (jacob.janisz@weightmans.com)
+- fix: config ([@JoJk0](https://github.com/JoJk0))
+- feat: code push ([@JoJk0](https://github.com/JoJk0))
+- Initial commit ([@JoJk0](https://github.com/JoJk0))
+
+#### Authors: 2
+
+- Jacob Janisz ([@JoJk0](https://github.com/JoJk0))
+- Jakub Janisz (jacob.janisz@weightmans.com)
+
+---
+
+# v0.9.13 (Tue Jul 04 2023)
+
+#### ⚠️ Pushed to `main`
+
 - fix: config ([@JoJk0](https://github.com/JoJk0))
 - feat: code push ([@JoJk0](https://github.com/JoJk0))
 - Initial commit ([@JoJk0](https://github.com/JoJk0))
