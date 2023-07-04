@@ -1,26 +1,25 @@
 {
-  "name": "storybook-addon-kit",
-  "version": "0.0.0",
-  "description": "everything you need to build a Storybook addon",
+  "name": "storybook-addon-vue-slots",
+  "version": "0.9.8",
+  "description": "Vue Slots support for Storybook",
   "keywords": [
-    "storybook-addons"
+    "storybook-addons",
+    "storybook",
+    "vue",
+    "vue3",
+    "slots"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/storybookjs/storybook-addon-kit"
+    "url": "https://github.com/JoJk0/storybook-addon-vue-slots"
   },
-  "author": "package-author",
+  "author": "Jacob Janisz",
   "license": "MIT",
   "exports": {
     ".": {
       "require": "./dist/index.js",
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
-    },
-    "./manager": {
-      "require": "./dist/manager.js",
-      "import": "./dist/manager.mjs",
-      "types": "./dist/manager.d.ts"
     },
     "./preview": {
       "require": "./dist/preview.js",
@@ -39,7 +38,6 @@
     "*.d.ts"
   ],
   "scripts": {
-    "postinstall": "node scripts/welcome.js",
     "clean": "rimraf ./dist",
     "prebuild": "yarn clean",
     "build": "tsup",
@@ -48,7 +46,6 @@
     "start": "run-p build:watch 'storybook --quiet'",
     "prerelease": "zx scripts/prepublish-checks.mjs",
     "release": "yarn build && auto shipit",
-    "eject-ts": "zx scripts/eject-typescript.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -64,6 +61,7 @@
     "@vitejs/plugin-react": "^3.1.0",
     "auto": "^10.3.0",
     "boxen": "^5.0.1",
+    "cheerio": "^1.0.0-rc.12",
     "dedent": "^0.7.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.3.1",
@@ -73,16 +71,17 @@
     "react-dom": "^18.0.0",
     "rimraf": "^3.0.2",
     "storybook": "^7.0.0",
-    "tsup": "^6.6.3",
+    "tsup": "^7.1.0",
     "typescript": "^4.9.5",
     "vite": "^4.1.4",
+    "vue": "^3.3.4",
     "zx": "^1.14.1"
   },
   "peerDependencies": {
     "@storybook/blocks": "^7.0.0",
     "@storybook/components": "^7.0.0",
+    "@storybook/vue3": "^7.0.25",
     "@storybook/core-events": "^7.0.0",
-    "@storybook/manager-api": "^7.0.0",
     "@storybook/preview-api": "^7.0.0",
     "@storybook/theming": "^7.0.0",
     "@storybook/types": "^7.0.0",
@@ -101,10 +100,10 @@
     "access": "public"
   },
   "storybook": {
-    "displayName": "Addon Kit",
+    "displayName": "Vue Slots",
     "supportedFrameworks": [
-      "supported-frameworks"
+      "vue3"
     ],
-    "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
+    "icon": "https://api.iconify.design/logos/vue.svg"
   }
 }
