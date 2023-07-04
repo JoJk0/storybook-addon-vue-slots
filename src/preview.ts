@@ -1,5 +1,5 @@
 import type { ProjectAnnotations, ArgTypesEnhancer, ArgsEnhancer, Args } from "@storybook/types";
-import { Decorator, type VueRenderer } from "@storybook/vue3"
+import type { Decorator, VueRenderer } from "@storybook/vue3"
 import renderWithSlots from './render'
 import transform, { SLOTS_CATEGORY_NAME } from './source'
 
