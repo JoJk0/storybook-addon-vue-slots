@@ -106,5 +106,10 @@
       "vue3"
     ],
     "icon": "https://api.iconify.design/logos/vue.svg"
+  },
+  "auto": {
+    "plugins": [
+      "npm"
+    ]
   }
 }
