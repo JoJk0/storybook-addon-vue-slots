@@ -73,7 +73,6 @@ export const convertSlotArgTypes: ArgTypesEnhancer<VueRenderer, Args> = (context
 }
 
 export const convertSlotArgs: ArgsEnhancer<VueRenderer, Args> = (context) => {
-  console.log(context)
   return context.initialArgs
 }
 

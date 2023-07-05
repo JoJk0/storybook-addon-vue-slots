@@ -45,10 +45,7 @@ export default (code: string, { component, argTypes, parameters }: PreparedStory
     ...templates
   };
 
-  // if (!Object.keys(slotProps).length)
-  // return code
   const children = componentEl.children().filter((i, el) => el.name === 'template')
-  console.log(children.length)
   children.remove()
 
   Object.entries(slotTemplates).forEach(([key, template]) => {
