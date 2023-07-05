@@ -7,7 +7,7 @@
     "incremental": false,
     "isolatedModules": true,
     "jsx": "react",
-    "lib": ["es2020", "dom"],
+    "lib": ["ESNext", "dom"],
     "module": "commonjs",
     "noImplicitAny": true,
     "rootDir": "./src",

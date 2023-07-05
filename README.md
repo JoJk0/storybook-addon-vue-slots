@@ -1,7 +1,7 @@
 <p align="center" style="margin: 4rem">
-  <p align="center" style="font-size: 3em;">
-      <img src="https://api.iconify.design/logos/vue.svg" alt="Vue" height="32" /> 
-     + <img src="https://api.iconify.design/logos/storybook-icon.svg" height="32" />
+  <p align="center">
+      <img src="https://api.iconify.design/logos/vue.svg" alt="Vue" height="32" />  
+      <img src="https://api.iconify.design/logos/storybook-icon.svg" height="32" />
   </p>
   <h1 align="center">Vue Slots Addon</h1>
 

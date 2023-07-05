@@ -33,7 +33,6 @@ export default (code: string, { component, argTypes, parameters }: PreparedStory
   const componentEl = $(componentName);
 
   const slots = Object.keys(argTypes).filter(key => argTypes[key].table?.category === SLOTS_CATEGORY_NAME);
-
   const props = componentEl.attr() || {};
 
   const templates = Object.entries(parameters.slots || {}).reduce((acc, [key, val]) => ({ ...acc, [key]: typeof val === 'object' && val.template ? val.template :  `{{ args.${key} }}` }), {} as Record<string, string>)
@@ -46,11 +45,13 @@ export default (code: string, { component, argTypes, parameters }: PreparedStory
     ...templates
   };
 
-  if (!Object.keys(slotProps).length)
-  return code
+  // if (!Object.keys(slotProps).length)
+  // return code
+  const children = componentEl.children().filter((i, el) => el.name === 'template')
+  console.log(children.length)
+  children.remove()
 
-  Object.entries(slotProps).forEach(([key, val]) => {
-    componentEl.removeAttr(key)
+  Object.entries(slotTemplates).forEach(([key, template]) => {
 
     const templateWithArgs = renderArgs(slotTemplates[key], slotProps)
 
