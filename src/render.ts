@@ -1,14 +1,14 @@
 import { computed, type DefineComponent } from 'vue'
 import type { ArgsStoryFn, Renderer } from '@storybook/types'
-import type { SlotsParams } from './slots'
 import { wrappedTemplate } from './utils'
+import { VueRenderer } from '@storybook/vue3'
 
-export const renderWithSlots = <TRenderer extends Renderer, TArgs extends Record<string, any>, TSlotNames extends string>() => {
+export const renderWithSlots = <TRenderer extends Renderer, TArgs extends Record<string, any>>() => {
   const makeComponentTemplate = (component: string, slots: string) => `
     <${component} v-bind="args">
       ${slots}
     </${component}>
-  `
+  ` as const
 
   return ((args, { viewMode, componentId, component, parameters }) => {
     const componentName = (component as DefineComponent).__name! || (component as { name: string }).name
@@ -21,30 +21,20 @@ export const renderWithSlots = <TRenderer extends Renderer, TArgs extends Record
       }
     }
 
-    const { components, templates, wrapper } = parameters.slots as SlotsParams<TSlotNames>
+    const slots = Object.entries(parameters.slots).reduce((acc, [currentSlotName, params]) => `${acc}\n${wrappedTemplate(typeof params === 'object' ? params.template : undefined, currentSlotName)}`, '')
 
-    const slots = Object.entries(templates).reduce((acc, [currentSlotName, currentTemplate]) => `${acc}\n${wrappedTemplate(currentTemplate as any, currentSlotName)}`, '')
+    const components = Object.entries(parameters.slots).reduce((acc, [, params]) => ({...acc, ...(typeof params === 'object' ? params.components : {})}), {})
 
     // Fix for root-based components (overlays, modals, tooltips etc.)
     if (!component)
       throw new Error('No component provided to render')
 
-    const containComponentIds = ['components-modal', 'components-tooltip']
-
-    const isContainedComponent = containComponentIds.includes(componentId)
-
-    const container = isContainedComponent
-      ? {
-          container: viewMode === 'docs' ? '.sbdocs-wrapper' : '#storybook-root',
-        }
-      : {}
-
     return {
-      template: wrapper ? wrapper(makeComponentTemplate(componentName, slots)) : makeComponentTemplate(componentName, slots),
+      template: makeComponentTemplate(componentName, slots),
       components: { [componentName]: component, ...(components || {}) },
-      setup: () => ({ args: computed(() => ({ ...args, ...container })) }),
+      setup: () => ({ args: computed(() => ({ ...args })) }),
     }
-  }) as ArgsStoryFn<TRenderer, TArgs>
+  }) as ArgsStoryFn<VueRenderer, TArgs>
 }
 
 export default renderWithSlots

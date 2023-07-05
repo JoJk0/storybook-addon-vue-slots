@@ -1,10 +1,10 @@
-import { makeDefaultSlots, SlotsParams } from './slots';
 import type { VueRenderer } from '@storybook/vue3'
-import { wrappedTemplate } from './utils'
+import { wrappedTemplate, SLOTS_CATEGORY_NAME } from './utils'
 import type { PreparedStory } from '@storybook/types'
 import { load } from "cheerio";
 
-export const SLOTS_CATEGORY_NAME = 'Slots'
+export const makeDefaultSlots = <TName extends Readonly<string>>(slotNames: TName[]) =>
+slotNames.reduce((acc, name) => ({ ...acc, [name]: `{{ args.${name} }}` as const }), {} as Record<TName, string>)
 
 export const slot = <TDesc extends Readonly<string>>(description: TDesc) => ({
   description,
@@ -17,10 +17,7 @@ export const slot = <TDesc extends Readonly<string>>(description: TDesc) => ({
   },
 } as const)
 
-
 export default (code: string, { component, argTypes, parameters }: PreparedStory<VueRenderer>) => {
-
-  const {templates, wrapper} = parameters.slots as SlotsParams<string> || {components: {}, templates: {}, wrapper: undefined}
 
   const $ = load(code, {
     xml: {
@@ -33,11 +30,13 @@ export default (code: string, { component, argTypes, parameters }: PreparedStory
 
   const componentName = component?.__name || (component as {name: string}).name
 
-  const componentEl = wrapper ? $(componentName).unwrap() : $(componentName);
+  const componentEl = $(componentName);
 
   const slots = Object.keys(argTypes).filter(key => argTypes[key].table?.category === SLOTS_CATEGORY_NAME);
 
   const props = componentEl.attr() || {};
+
+  const templates = Object.entries(parameters.slots || {}).reduce((acc, [key, val]) => ({ ...acc, [key]: typeof val === 'object' && val.template ? val.template :  `{{ args.${key} }}` }), {} as Record<string, string>)
 
   const slotProps = Object.entries(props).filter(([key]) => slots.includes(key)).reduce((acc, [key, val]) => ({ ...acc, [key]: val }), {} as Record<string, string>);
 
@@ -48,9 +47,7 @@ export default (code: string, { component, argTypes, parameters }: PreparedStory
   };
 
   if (!Object.keys(slotProps).length)
-  return wrapper ? `<template>
-  ${wrapper(code)}
-  </template>` : code
+  return code
 
   Object.entries(slotProps).forEach(([key, val]) => {
     componentEl.removeAttr(key)
@@ -67,10 +64,7 @@ export default (code: string, { component, argTypes, parameters }: PreparedStory
     recognizeSelfClosing: true
   });
 
-
-  return wrapper ? `<template>
-  ${wrapper(generatedCode)}
-  </template>` : generatedCode
+  return generatedCode
 }
 
 export const renderArgs = (template: string, args: Record<string, string>) => {
