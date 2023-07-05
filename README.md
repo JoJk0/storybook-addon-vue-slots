@@ -1,6 +1,6 @@
 <p align="center" style="margin: 4rem">
   <p align="center" style="font-size: 3em;">
-      <img src="https://api.iconify.design/logos/vue.svg" alt="Vue" height="32" />
+      <img src="https://api.iconify.design/logos/vue.svg" alt="Vue" height="32" /> 
      + <img src="https://api.iconify.design/logos/storybook-icon.svg" height="32" />
   </p>
   <h1 align="center">Vue Slots Addon</h1>
@@ -11,7 +11,7 @@
     </a>
     <a href="https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md">
       <img src="https://raw.githubusercontent.com/JoJk0/StandWithUkraine/patch-1/badges/StandWithUkraineFlat.svg" alt="version" />
-    </a>
+    </a>    
   </h3>
 </p>
 
@@ -70,7 +70,27 @@ export default meta = {
 ### Standard
 
 Use `args.[slotName]` inside the template to pass data from Storybook controls to the slot, or access other args.
-So, the value of `header`` arg control in the Storybook table is being passed into the slot template, allowing control of an aspect of the slot.
+
+```ts
+// MyComponent.stories.ts
+
+export default meta = {
+  parameters: {
+    slots: {
+      default: {
+        description: 'Default slot',
+        template: `<p>{{ args.default }}</p>`,
+      },
+      header: {
+        description: 'Header slot',
+        template: `<p>{{ args.header }}</p>`,
+      },
+    },
+  },
+}
+```
+
+So, value of `header` arg control in Storybook table is being passed into the slot template, allowing control of an aspect of the slot.
 
 ### Advanced
 
@@ -108,5 +128,4 @@ Help support my open-source work through [PayPal](https://paypal.com) and [GitHu
 <a href="https://www.paypal.com/donate/?hosted_button_id=MVYGX9EHYRN9W"><img src="https://pics.paypal.com/00/s/YTRmYmIzYjgtNDA5My00YzY5LWJmN2QtNmMyNTU2ZGUwOTYw/file.PNG" border="0" height="35" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" /></a>
 
 ## License
-
 MIT License © 2023 Jacob Janisz
