@@ -1,7 +1,7 @@
 import { computed, type DefineComponent } from 'vue'
 import type { ArgsStoryFn, Renderer } from '@storybook/types'
 import { wrappedTemplate } from './utils'
-import { VueRenderer } from '@storybook/vue3'
+import type { VueRenderer } from '@storybook/vue3'
 
 export const renderWithSlots = <TRenderer extends Renderer, TArgs extends Record<string, any>>() => {
   const makeComponentTemplate = (component: string, slots: string) => `

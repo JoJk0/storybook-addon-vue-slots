@@ -45,6 +45,16 @@ export default {
 } satisfies StorybookConfig
 ```
 
+## Examples
+
+Run:
+
+```zsh
+npm run storybook
+```
+
+To run an example Storybook
+
 ## Usage
 
 ### Zero

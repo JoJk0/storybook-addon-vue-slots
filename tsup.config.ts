@@ -10,6 +10,7 @@ export default defineConfig((options) => ({
   },
   treeshake: true,
   sourcemap: true,
+  external: ["vue", "@storybook/vue3", "@storybook/*", "storybook", "@storybook/types"],
   clean: true,
   platform: "browser",
   esbuildOptions(options) {

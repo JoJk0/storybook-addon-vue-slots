@@ -5,7 +5,7 @@ import renderWithSlots from './render'
 import transform from './source'
 import { SLOTS_CATEGORY_NAME } from './utils'
 
-export const withSlots: Decorator = (story, { component, parameters }) => {
+const withSlots: Decorator = (story, { component, parameters }) => {
 
   const slots = Object.keys(parameters.slots || {}).reduce((acc, key) => ({ ...acc, [key]: String }), {})
 
@@ -26,7 +26,7 @@ export const withSlots: Decorator = (story, { component, parameters }) => {
   }
 }
 
-export const convertSlotArgTypes: ArgTypesEnhancer<VueRenderer, Args> = (context) => {
+const convertSlotArgTypes: ArgTypesEnhancer<VueRenderer, Args> = (context) => {
 
   if (!context.parameters.slots) return context.argTypes
 
@@ -72,7 +72,7 @@ export const convertSlotArgTypes: ArgTypesEnhancer<VueRenderer, Args> = (context
   return argTypes
 }
 
-export const convertSlotArgs: ArgsEnhancer<VueRenderer, Args> = (context) => {
+const convertSlotArgs: ArgsEnhancer<VueRenderer, Args> = (context) => {
   return context.initialArgs
 }
 
@@ -80,7 +80,7 @@ const preview: ProjectAnnotations<VueRenderer> = {
   decorators: [withSlots],
   render: renderWithSlots(),
   argTypesEnhancers: [convertSlotArgTypes],
-  // argsEnhancers: [convertSlotArgs],
+  argsEnhancers: [convertSlotArgs],
   parameters: {
     docs: {
       source: {
