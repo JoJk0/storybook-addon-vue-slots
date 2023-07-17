@@ -4,6 +4,22 @@
 
 - fix: source [#1](https://github.com/JoJk0/storybook-addon-vue-slots/pull/1) ([@JoJk0](https://github.com/JoJk0))
 
+#### ⚠️ Pushed to `main`
+
+- fix ([@JoJk0](https://github.com/JoJk0))
+
+#### Authors: 1
+
+- Jacob Janisz ([@JoJk0](https://github.com/JoJk0))
+
+---
+
+# v0.9.19 (Mon Jul 17 2023)
+
+#### 🐛 Bug Fix
+
+- fix: source [#1](https://github.com/JoJk0/storybook-addon-vue-slots/pull/1) ([@JoJk0](https://github.com/JoJk0))
+
 #### Authors: 1
 
 - Jacob Janisz ([@JoJk0](https://github.com/JoJk0))
