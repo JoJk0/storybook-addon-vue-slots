@@ -6,6 +6,8 @@ export default {
     autodocs: 'tag',
   },
   addons: [
-    '../../Weightmans UI - Vue/dist/storybook',
+    '@storybook/addon-essentials',
+    '@storybook/addon-links',
+    '@storybook/addon-interactions',
   ],
 }

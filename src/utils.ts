@@ -1,7 +1,7 @@
 
 export const wrappedTemplate = (template: string | undefined, slotName: string) => {
 
-  const templateWithDefault = !template ? `{{ args.${slotName} }}` : template
+  const templateWithDefault = template ?? `{{ args.${slotName} }}`
 
   return templateWithDefault.includes(`<template #${slotName}`) ?
   templateWithDefault :
