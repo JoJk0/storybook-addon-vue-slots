@@ -1,3 +1,15 @@
+# v0.9.21 (Tue Jul 18 2023)
+
+#### ⚠️ Pushed to `main`
+
+- fix: collapse default slot ([@JoJk0](https://github.com/JoJk0))
+
+#### Authors: 1
+
+- Jacob Janisz ([@JoJk0](https://github.com/JoJk0))
+
+---
+
 # v0.9.19 (Mon Jul 17 2023)
 
 #### 🐛 Bug Fix
