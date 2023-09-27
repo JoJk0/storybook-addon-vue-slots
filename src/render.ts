@@ -4,8 +4,8 @@ import { wrappedTemplate } from './utils'
 import type { VueRenderer } from '@storybook/vue3'
 
 export const renderWithSlots = <TRenderer extends Renderer, TArgs extends Record<string, any>>() => {
-  const makeComponentTemplate = (component: string, slots: string) => `
-    <${component} v-bind="args">
+  const makeComponentTemplate = (component: string, slots: string, args: Args) => `
+    <${component} ${Object.entries(args).map(([key, value]) => `${key}="${value}"`).join(" ")}>
       ${slots}
     </${component}>
   ` as const
@@ -15,7 +15,7 @@ export const renderWithSlots = <TRenderer extends Renderer, TArgs extends Record
 
     if (!parameters?.slots) {
       return {
-        template: makeComponentTemplate(componentName, ''),
+        template: makeComponentTemplate(componentName, '', args),
         components: { [componentName]: component },
         setup: () => ({ args: computed(() => ({ ...args })) }),
       }
@@ -30,7 +30,7 @@ export const renderWithSlots = <TRenderer extends Renderer, TArgs extends Record
       throw new Error('No component provided to render')
 
     return {
-      template: makeComponentTemplate(componentName, slots),
+      template: makeComponentTemplate(componentName, slots, args),
       components: { [componentName]: component, ...(components || {}) },
       setup: () => ({ args: computed(() => ({ ...args })) }),
     }
