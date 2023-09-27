@@ -1,5 +1,5 @@
 import { computed, type DefineComponent } from 'vue'
-import type { ArgsStoryFn, Renderer } from '@storybook/types'
+import type { Args, ArgsStoryFn, Renderer } from '@storybook/types'
 import { wrappedTemplate } from './utils'
 import type { VueRenderer } from '@storybook/vue3'
 
