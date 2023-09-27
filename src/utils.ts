@@ -1,14 +1,20 @@
+export const wrappedTemplate = (
+  template: string | undefined,
+  slotName: string
+) => {
+  const templateWithDefault = template ?? `{{ args.${slotName} }}`;
 
-export const wrappedTemplate = (template: string | undefined, slotName: string) => {
+  const wrap = (contents: string) =>
+    `<template #${slotName}>\n${contents}\n</template>`;
 
-  const templateWithDefault = template ?? `{{ args.${slotName} }}`
+  const wrappedTemplate = templateWithDefault.includes(`<template #${slotName}`)
+    ? templateWithDefault
+    : wrap(templateWithDefault);
 
-  const wrap = (contents: string) => `<template #${slotName}>\n${contents}\n</template>`
+  return wrappedTemplate.replace(
+    /<template #default>(\n*)(.*)(\n*)<\/template>/gimsu,
+    "$2"
+  );
+};
 
-  const wrappedTemplate = templateWithDefault.includes(`<template #${slotName}`) ?
-  templateWithDefault : wrap(templateWithDefault)
-
-  return wrappedTemplate.replace(/<template #default>(\n*)(.*)(\n*)<\/template>/gmiu, '$2')
-}
-
-export const SLOTS_CATEGORY_NAME = 'slots'
+export const SLOTS_CATEGORY_NAME = "slots";
