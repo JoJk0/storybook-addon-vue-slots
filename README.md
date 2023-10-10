@@ -115,6 +115,7 @@ export default meta = {
       default: {
         description: 'Default slot',
         template: `<p>{{ args.default }}</p>`,
+      },
       header: {
         description: 'Header slot',
         components: { AppButton },
