@@ -1,3 +1,23 @@
+# v0.9.22 (Sat Oct 14 2023)
+
+#### 🐛 Bug Fix
+
+- Fix/readme typo [#6](https://github.com/JoJk0/storybook-addon-vue-slots/pull/6) ([@miwashutaro0611](https://github.com/miwashutaro0611))
+- Feat/inline args [#4](https://github.com/JoJk0/storybook-addon-vue-slots/pull/4) (contact@maartenbrakkee.nl)
+- Fix/regex [#3](https://github.com/JoJk0/storybook-addon-vue-slots/pull/3) (contact@maartenbrakkee.nl)
+
+#### 🔩 Dependency Updates
+
+- Bump postcss from 8.4.26 to 8.4.31 [#5](https://github.com/JoJk0/storybook-addon-vue-slots/pull/5) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Maarten Brakkee ([@maartenbrakkee](https://github.com/maartenbrakkee))
+- miwa_shuntaro ([@miwashutaro0611](https://github.com/miwashutaro0611))
+
+---
+
 # v0.9.21 (Tue Jul 18 2023)
 
 #### ⚠️ Pushed to `main`
