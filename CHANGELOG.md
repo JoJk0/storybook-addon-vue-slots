@@ -1,3 +1,15 @@
+# v0.9.22 (Sat Oct 14 2023)
+
+#### 🐛 Bug Fix
+
+- Fix/regex [#3](https://github.com/JoJk0/storybook-addon-vue-slots/pull/3) (contact@maartenbrakkee.nl)
+
+#### Authors: 1
+
+- Maarten Brakkee ([@maartenbrakkee](https://github.com/maartenbrakkee))
+
+---
+
 # v0.9.21 (Tue Jul 18 2023)
 
 #### ⚠️ Pushed to `main`
