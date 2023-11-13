@@ -1,3 +1,15 @@
+# v0.9.25 (Mon Nov 13 2023)
+
+#### 🐛 Bug Fix
+
+- fix(render): set attributes syntax for different types than string [#9](https://github.com/JoJk0/storybook-addon-vue-slots/pull/9) ([@khylias](https://github.com/khylias))
+
+#### Authors: 1
+
+- Kraus Vincent ([@khylias](https://github.com/khylias))
+
+---
+
 # v0.9.22 (Sat Oct 14 2023)
 
 #### 🐛 Bug Fix
