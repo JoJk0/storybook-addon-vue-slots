@@ -1,3 +1,15 @@
+# v0.9.26 (Tue Nov 28 2023)
+
+#### 🐛 Bug Fix
+
+- fix(render): properly handle non-string args [#10](https://github.com/JoJk0/storybook-addon-vue-slots/pull/10) ([@filiphazardous](https://github.com/filiphazardous))
+
+#### Authors: 1
+
+- Filip Joelsson ([@filiphazardous](https://github.com/filiphazardous))
+
+---
+
 # v0.9.25 (Mon Nov 13 2023)
 
 #### 🐛 Bug Fix
