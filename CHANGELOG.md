@@ -1,3 +1,15 @@
+# v0.9.27 (Wed Nov 29 2023)
+
+#### 🐛 Bug Fix
+
+- fix(render): better fix for bound args [#11](https://github.com/JoJk0/storybook-addon-vue-slots/pull/11) ([@filiphazardous](https://github.com/filiphazardous))
+
+#### Authors: 1
+
+- Filip Joelsson ([@filiphazardous](https://github.com/filiphazardous))
+
+---
+
 # v0.9.26 (Tue Nov 28 2023)
 
 #### 🐛 Bug Fix
