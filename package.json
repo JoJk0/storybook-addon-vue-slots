@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-vue-slots",
-  "version": "0.9.28",
+  "version": "0.9.29",
   "description": "Vue Slots support for Storybook",
   "keywords": [
     "storybook-addons",
