@@ -1,3 +1,15 @@
+# v0.9.28 (Fri Jan 05 2024)
+
+#### 🐛 Bug Fix
+
+- fix: optional-chaining [#13](https://github.com/JoJk0/storybook-addon-vue-slots/pull/13) ([@JoJk0](https://github.com/JoJk0))
+
+#### Authors: 1
+
+- Jacob Janisz ([@JoJk0](https://github.com/JoJk0))
+
+---
+
 # v0.9.27 (Wed Nov 29 2023)
 
 #### 🐛 Bug Fix
