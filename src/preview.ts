@@ -41,18 +41,18 @@ const convertSlotArgTypes: ArgTypesEnhancer<VueRenderer, Args> = (context) => {
       // control: 'text',
       description: typeof slot === 'string' ? slot : slot.description,
       table: {
-        ...context.argTypes[slotName].table,
+        ...context.argTypes[slotName]?.table,
         category: SLOTS_CATEGORY_NAME,
         defaultValue: null,
         jsDocTags: undefined,
         type: {
-          ...context.argTypes[slotName].table?.type,
+          ...context.argTypes[slotName]?.table?.type,
           detail: undefined,
           summary: 'html'
         }
       },
       type: {
-        ...context.argTypes[slotName].type,
+        ...context.argTypes[slotName]?.type,
         required: undefined,
         name: 'string'
       }
