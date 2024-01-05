@@ -1,3 +1,15 @@
+# v0.9.29 (Fri Jan 05 2024)
+
+#### 🐛 Bug Fix
+
+- Update render.ts [#14](https://github.com/JoJk0/storybook-addon-vue-slots/pull/14) ([@JoJk0](https://github.com/JoJk0))
+
+#### Authors: 1
+
+- Jacob Janisz ([@JoJk0](https://github.com/JoJk0))
+
+---
+
 # v0.9.28 (Fri Jan 05 2024)
 
 #### 🐛 Bug Fix
