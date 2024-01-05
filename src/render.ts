@@ -5,7 +5,7 @@ import type { VueRenderer } from '@storybook/vue3'
 
 export const renderWithSlots = <TRenderer extends Renderer, TArgs extends Record<string, any>>() => {
   const makeComponentTemplate = (component: string, slots: string, args: Args) => `
-    <${component} ${Object.keys(args).map((key) => `:${key}="args.${key}"`).join(" ")}>
+    <${component} ${Object.keys(args).map((key) => `:${key}="args['${key}']"`).join(" ")}>
       ${slots}
     </${component}>
   ` as const
