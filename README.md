@@ -102,6 +102,47 @@ export default meta = {
 
 So, value of `header` arg control in Storybook table is being passed into the slot template, allowing control of an aspect of the slot.
 
+### Dynamic Slot
+
+```ts
+// MyComponent.vue
+
+<script lang="ts">
+  ...
+  const columns = ['firstName', 'lastName', 'age', 'city']
+  ...
+</script>
+<template>
+...
+<tr v-for="(rows, i) of rows">
+    ...
+    <slot v-for="(col, i) of columns" :name="col" v-bind="row" :row="row"></slot>
+    ...
+</tr>
+...
+</template>
+
+// MyComponent.stories.ts
+
+export default meta = {
+  parameters: {
+    slots: {
+      firstName: {
+        description: 'First Name',
+        template: `<p>{{ scope.vbind.firstName }}</p>`,
+      },
+      lastName: {
+        description: 'Last Name slot',
+        template: `<p>{{ scope.row.lastName }}</p>`,
+      },
+      ...
+    },
+  },
+}
+```
+
+You can use `scope` to access value pass through slot
+
 ### Advanced
 
 #### Adding components
