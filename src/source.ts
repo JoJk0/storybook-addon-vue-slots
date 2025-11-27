@@ -1,6 +1,6 @@
 import type { VueRenderer } from '@storybook/vue3'
 import { wrappedTemplate, SLOTS_CATEGORY_NAME } from './utils'
-import type { PreparedStory } from '@storybook/types'
+import type { PreparedStory } from 'storybook/internal/types'
 import { load } from "cheerio";
 
 export const makeDefaultSlots = <TName extends Readonly<string>>(slotNames: TName[]) =>
@@ -33,7 +33,7 @@ export default (code: string, { component, argTypes, parameters }: PreparedStory
 
   const componentEl = $(componentName);
 
-  const slots = Object.keys(argTypes).filter(key => argTypes[key].table?.category === SLOTS_CATEGORY_NAME);
+  const slots = Object.keys(argTypes).filter(key => argTypes[key]?.table?.category === SLOTS_CATEGORY_NAME);
 
   const templates = Object.entries(parameters.slots || {}).reduce((acc, [key, val]) => ({ ...acc, [key]: typeof val === 'object' && val.template !== undefined ? val.template :  `{{ args.${key} }}` }), {} as Record<string, string>)
 
@@ -58,10 +58,12 @@ export default (code: string, { component, argTypes, parameters }: PreparedStory
   // console.log({code, slots, templates, slotArgs, slotTemplates, children})
 
   const generatedCode = $.html({
-    lowerCaseAttributeNames: false,
-    lowerCaseTags: false,
-    xmlMode: false,
-    recognizeSelfClosing: true
+    xml: {
+      lowerCaseAttributeNames: false,
+      lowerCaseTags: false,
+      xmlMode: false,
+      recognizeSelfClosing: true
+    }
   });
 
   return generatedCode
@@ -87,9 +89,8 @@ export const getSlotArgs = (code: string) => {
 
   const matches = [...code.matchAll(slotRegex)]
 
-  const args = matches.reduce((acc, [_, slotName, arg]) => ({ ...acc, [slotName]: arg }), {} as Record<string, string>)
+  const args = matches.reduce((acc, [_, slotName, arg]) => ({ ...acc, [slotName ?? 'default']: arg ?? ''}), {} as Record<string, string>)
 
-  
   if(args.default === undefined){
 
     const codeWithoutSlots = code.replaceAll(slotRegex, '')
