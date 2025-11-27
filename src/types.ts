@@ -8,10 +8,7 @@ export type SlotParams = string | {
 }
 
 declare module '@storybook/vue3' {
-  export interface Meta {
-    parameters: Parameters
-  }
-  export interface Parameters {
-    slots?: Record<string, SlotParams>
+  interface Parameters {
+    slots?: Record<string, SlotParams>;
   }
 }

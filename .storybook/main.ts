@@ -6,8 +6,7 @@ export default {
     autodocs: 'tag',
   },
   addons: [
-    '@storybook/addon-essentials',
     '@storybook/addon-links',
-    '@storybook/addon-interactions',
+    '@storybook/addon-docs',
   ],
 }

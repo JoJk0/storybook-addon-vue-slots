@@ -18,14 +18,12 @@
   "license": "MIT",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs"
+      "default": "./dist/index.js"
     },
     "./preview": {
-      "import": "./dist/preview.js",
       "types": "./dist/preview.d.ts",
-      "require": "./dist/preview.cjs"
+      "default": "./dist/preview.js"
     },
     "./package.json": "./package.json"
   },
@@ -37,54 +35,62 @@
   ],
   "scripts": {
     "clean": "rimraf ./dist",
-    "prebuild": "yarn clean",
+    "prebuild": "node -e \"fs.rmSync('./dist', { recursive: true, force: true })\"",
     "build": "tsup",
     "build:watch": "pnpm build --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "run-p build:watch 'storybook --quiet'",
     "prerelease": "zx scripts/prepublish-checks.js",
-    "release": "yarn build && auto shipit",
+    "release": "pnpm build && auto shipit",
     "storybook": "storybook dev -p 6066",
     "build-storybook": "storybook build -o storybook-static",
+    "lint": "eslint --cache .",
+    "lint:fix": "pnpm lint --fix",
     "preview-storybook": "vite preview --port 6088 --out-dir storybook-static"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^8.0.8",
-    "@storybook/addon-interactions": "^8.0.8",
-    "@storybook/addon-links": "^8.0.8",
-    "@storybook/addon-mdx-gfm": "8.0.8",
-    "@storybook/blocks": "^8.0.8",
-    "@storybook/builder-vite": "^8.0.8",
-    "@storybook/components": "^8.0.8",
-    "@storybook/core-events": "^8.0.8",
-    "@storybook/preview-api": "^8.0.8",
-    "@storybook/test": "^8.0.8",
-    "@storybook/theming": "^8.0.8",
-    "@storybook/types": "^8.0.8",
-    "@storybook/vue3": "^8.0.8",
-    "@storybook/vue3-vite": "^8.0.8",
-    "@types/node": "^20.12.7",
-    "@vitejs/plugin-vue": "^5.0.4",
-    "auto": "^11.1.6",
-    "boxen": "^7.1.1",
-    "cheerio": "1.0.0-rc.12",
+    "@eslint/js": "^9.36.0",
+    "@storybook/addon-docs": "^10.1.0",
+    "@storybook/addon-links": "^10.0.0",
+    "@storybook/builder-vite": "^10.0.0",
+    "@storybook/vue3": "^10.0.0",
+    "@storybook/vue3-vite": "^10.0.0",
+    "@types/node": "^24.10.1",
+    "@vitejs/plugin-vue": "^6.0.2",
+    "auto": "^11.3.0",
+    "boxen": "^8.0.1",
+    "cheerio": "1.1.2",
     "dedent": "^1.5.3",
-    "prettier": "^3.2.5",
-    "rimraf": "^5.0.5",
-    "storybook": "^8.0.8",
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.8",
-    "vue": "^3.4.21",
-    "zx": "^8.0.1"
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-storybook": "next",
+    "eslint-plugin-vue": "^10.6.1",
+    "npm-run-all2": "^8.0.4",
+    "prettier": "^3.6.2",
+    "prompts": "^2.4.2",
+    "rimraf": "^6.1.2",
+    "storybook": "next",
+    "ts-dedent": "^2.2.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.44.1",
+    "vite": "^7.0.58",
+    "vue": "^3.5.25",
+    "zx": "^8.7.1"
   },
   "peerDependencies": {
-    "@storybook/blocks": "^8.0.8",
-    "@storybook/core-events": "^8.0.8",
-    "@storybook/preview-api": "^8.0.8",
-    "@storybook/types": "^8.0.8",
-    "@storybook/vue3": "^8.0.8",
-    "vue": "^3.3.4"
+    "storybook": "^10.0.0",
+    "vue": "^3.5.0"
+  },
+  "bundler": {
+    "previewEntries": [
+      "src/preview.ts",
+      "src/index.ts"
+    ],
+    "nodeEntries": [
+      "src/preset.ts"
+    ]
   },
   "storybook": {
     "displayName": "Vue Slots",

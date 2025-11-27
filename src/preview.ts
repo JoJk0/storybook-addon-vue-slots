@@ -1,9 +1,10 @@
-import type { ProjectAnnotations, ArgTypesEnhancer, StrictInputType, ArgsEnhancer, Args } from "@storybook/types";
-import { Decorator, type VueRenderer } from "@storybook/vue3"
+
+import type { Decorator, VueRenderer } from "@storybook/vue3"
 import type { ConcreteComponent } from "vue"
 import renderWithSlots from './render'
 import transform from './source'
 import { SLOTS_CATEGORY_NAME } from './utils'
+import type { Args, ArgsEnhancer, ArgTypesEnhancer, ProjectAnnotations, StrictInputType } from "storybook/internal/csf"
 
 const withSlots: Decorator = (story, { component, parameters }) => {
 
@@ -39,11 +40,11 @@ const convertSlotArgTypes: ArgTypesEnhancer<VueRenderer, Args> = (context) => {
       ...context.argTypes[slotName],
       name: slotName,
       // control: 'text',
-      description: typeof slot === 'string' ? slot : slot.description,
+      description: typeof slot === 'string' ? slot : slot?.description,
       table: {
         ...context.argTypes[slotName]?.table,
         category: SLOTS_CATEGORY_NAME,
-        defaultValue: null,
+        defaultValue: undefined,
         jsDocTags: undefined,
         type: {
           ...context.argTypes[slotName]?.table?.type,
